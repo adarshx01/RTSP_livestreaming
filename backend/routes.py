@@ -1,4 +1,5 @@
 # backend/routes.py
+
 from flask import Blueprint, request, jsonify
 from models import overlays_collection
 from bson.objectid import ObjectId
@@ -263,7 +264,7 @@ def update_overlay(id):
     try:
         result = overlays_collection.update_one({'_id': ObjectId(id)}, {'$set': data})
         if result.matched_count:
-            return jsonify({'message': 'Overlay updated'}), 200
+            return jsonify({'message': 'Overlay updated successfully'}), 200
         return jsonify({'error': 'Overlay not found'}), 404
     except:
         return jsonify({'error': 'Invalid ID format'}), 400
@@ -316,7 +317,7 @@ def delete_overlay(id):
     try:
         result = overlays_collection.delete_one({'_id': ObjectId(id)})
         if result.deleted_count:
-            return jsonify({'message': 'Overlay deleted'}), 200
+            return jsonify({'message': 'Overlay deleted successfully'}), 200
         return jsonify({'error': 'Overlay not found'}), 404
     except:
         return jsonify({'error': 'Invalid ID format'}), 400
